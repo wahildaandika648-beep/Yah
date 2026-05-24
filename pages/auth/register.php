@@ -1,0 +1,4 @@
+<?php
+if ($_SERVER['REQUEST_METHOD']==='POST') require __DIR__ . '/../../actions/auth/register.php';
+$captcha = captcha_generate();
+?><!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/assets/css/app.css"><title>Register NOXARA</title></head><body><main class="phone"><h1>Daftar NOXARA</h1><form method="post"><input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>"><input name="username" required><input type="email" name="email" required><input name="phone" required><input type="password" name="password" required><input type="password" name="password_confirmation" required><input name="referral_code" placeholder="Kode referral"><label><?= e($captcha['q']) ?> <input name="captcha" required></label><label><input type="checkbox" name="agree" value="1" required> Saya setuju</label><button>Registrasi</button></form><a href="/index.php?page=login">Login</a></main></body></html>
