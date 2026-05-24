@@ -1,0 +1,4 @@
+<?php
+if ($_SERVER['REQUEST_METHOD']==='POST') require __DIR__ . '/../../actions/auth/login.php';
+$captcha = captcha_generate();
+?><!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/assets/css/app.css"><title>Login NOXARA</title></head><body><main class="phone"><h1>NOXARA</h1><?php if($m=flash_get('ok')) echo '<p class="ok">'.e($m).'</p>'; ?><form method="post"><input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>"><input name="identity" placeholder="Email / HP / Username" required><input type="password" name="password" placeholder="Password" required><label><?= e($captcha['q']) ?> <input name="captcha" required></label><label><input type="checkbox" name="agree" value="1" required> Saya setuju</label><button>Login</button></form><a href="/index.php?page=register">Daftar</a></main></body></html>
